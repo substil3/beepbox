@@ -194,6 +194,11 @@ var beepbox = (function (exports) {
         { name: "decay 1", type: 8, speed: 10.0 },
         { name: "decay 2", type: 8, speed: 7.0 },
         { name: "decay 3", type: 8, speed: 4.0 },
+        { name: "gaussian 1", type: 9, speed: 4.0 },
+        { name: "gaussian 2", type: 9, speed: 2.0 },
+        { name: "gaussian 3", type: 9, speed: 1.0 },
+        { name: "pure noise", type: 10, speed: 1.0 },
+        { name: "noisy curve", type: 11, speed: 2.0}
     ]);
     Config.feedbacks = toNameMap([
         { name: "1⟲", indices: [[1], [], [], []] },

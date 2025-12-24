@@ -51,6 +51,9 @@ export const enum EnvelopeType {
 	tremolo,
 	tremolo2,
 	decay,
+	gaussian,
+	pureNoise,
+	noisyCurve,
 }
 
 export const enum InstrumentType {
@@ -432,6 +435,11 @@ export class Config {
 		{name: "decay 1",  type: EnvelopeType.decay,    speed: 10.0},
 		{name: "decay 2",  type: EnvelopeType.decay,    speed:  7.0},
 		{name: "decay 3",  type: EnvelopeType.decay,    speed:  4.0},
+		{name: "gaussian 1", type: EnvelopeType.gaussian,  speed: 1.0},
+		{name: "gaussian 2", type: EnvelopeType.gaussian,  speed: 2.0},
+		{name: "gaussian 3", type: EnvelopeType.gaussian,  speed: 4.0},
+		{name: "pure noise", type: EnvelopeType.pureNoise, speed: 1.0},
+		{name: "noisy curve", type: EnvelopeType.noisyCurve, speed: 2.0},
 	]);
 	public static readonly feedbacks: DictionaryArray<Feedback> = toNameMap([
 		{name: "1⟲",          indices: [[1],  [],  [],  []]},

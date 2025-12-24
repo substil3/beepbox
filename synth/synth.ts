@@ -3930,6 +3930,19 @@ class EnvelopeComputer {
 			case EnvelopeType.punch:    return Math.max(1.0, 2.0 - time * 10.0);
 			case EnvelopeType.flare:    const attack: number = 0.25 / Math.sqrt(envelope.speed); return time < attack ? time / attack : 1.0 / (1.0 + (time - attack) * envelope.speed);
 			case EnvelopeType.decay:    return Math.pow(2, -envelope.speed * time);
+
+			//dampedtremolo
+			case EnvelopeType.gaussian: return Math.exp(-envelope.speed * time) * (0.5 - 0.5 * Math.cos(beats * 2.0 * Math.PI * envelope.speed));
+
+			case EnvelopeType.pureNoise: {
+				return Math.random() * 2.0 - 1.0;
+			}
+
+			case EnvelopeType.noisyCurve: {
+				const amount = 0.6;
+				const noise = Math.random()-0.5;
+				return Math.max(0, Math.min(1, 1.0 - time * envelope.speed + noise * amount));
+			}
 			default: throw new Error("Unrecognized operator envelope type.");
 		}
 	}
