@@ -27,5 +27,8 @@
 	},
 	"peerDependencies": {
 		"imperative-html": "^0.1.2"
+	},
+	"dependencies": {
+		"beepbox": "^4.2.0"
 	}
 }
