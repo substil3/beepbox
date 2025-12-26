@@ -67,6 +67,7 @@ export const enum InstrumentType {
 	pickedString,
 	supersaw,
 	length,
+	sampler,
 }
 
 export const enum EffectType {

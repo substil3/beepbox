@@ -29,6 +29,10 @@
 		"imperative-html": "^0.1.2"
 	},
 	"dependencies": {
-		"beepbox": "^4.2.0"
+		"beepbox": "^4.2.0",
+		"curl": "^0.1.4",
+		"express": "^5.2.1",
+		"node-fetch": "^3.3.2",
+		"ts-node": "^10.9.2"
 	}
 }

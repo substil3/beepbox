@@ -406,6 +406,7 @@ var beepbox = (function (exports) {
                 { name: "drumset", customType: 4 },
                 { name: "harmonics", customType: 5 },
                 { name: "pulse width", customType: 6 },
+                { name: "sampler", customType: 10 },
             ]) },
         { name: "Retro Presets", presets: toNameMap([
                 { name: "square wave", midiProgram: 80, settings: { "type": "chip", "transition": "seamless", "effects": "none", "chord": "arpeggio", "filterCutoffHz": 4000, "filterResonance": 0, "filterEnvelope": "steady", "wave": "square", "interval": "union", "vibrato": "none" } },
