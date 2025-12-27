@@ -5,10 +5,10 @@ document.getElementById("loginBtn").onclick = () => {
     `/oauth/login`;
 }
 
-
 document.getElementById("downloadBtn").onclick = async () => {
   const id = document.getElementById("soundId").value;
 
-  const res = await fetch(`/download/${id}`, { method: "POST" });
-  alert(res.ok ? "Download started" : "Not authorized");
+  const res = fetch(`/download?id=${id}`, { method: "GET" });
+
+  console.log(res)  
 };

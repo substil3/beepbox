@@ -2,11 +2,20 @@ import express from "express";
 import fetch from "node-fetch";
 import "dotenv/config";
 import downloadToDisk from "./freesoundDownload.js";
+import session from "express-session";
 
 const app = express();
-app.use(express.static("."));
 
-let accessToken = null;
+app.use(
+  session({
+    name: "freesound.sid",
+    secret: process.env.SESSION_SECRET || "dev-secret",
+    resave: false,
+    saveUninitialized: false
+  })
+);
+
+app.use(express.static("."))
 
 /* Step 1: Redirect user to Freesound */
 app.get("/oauth/login", (req, res) => {
@@ -63,12 +72,36 @@ app.get("/oauth/callback", async (req, res) => {
 
   console.log("ACCESS TOKEN:", tokenData.access_token);
 
+  req.session.accessToken = tokenData.access_token;
   res.send("Authorization successful. You may close this page.");
+
 });
 
 
+app.get("/download/", async (req, res) => {
+  try {
+    const id = req.query.id;
+    const accessToken = req.session.accessToken;
 
-app.post("/download/id")
+    if (!id) {
+      return res.status(400).send("Missing sound ID");
+    }
+
+    if (!accessToken) {
+      return res.status(401).send("Not authenticated");
+    }
+
+    const filePath = await downloadToDisk(id, accessToken);
+
+    res.json({
+      success: true,
+      file: filePath
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(err.message);
+  }
+});
 
 
 app.listen(3000, () => {
