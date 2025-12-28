@@ -45,7 +45,6 @@ export class EditorConfig {
 			{name: "pulse width",      customType: InstrumentType.pwm},
 			{name: "picked string",    customType: InstrumentType.pickedString},
 			{name: "supersaw",         customType: InstrumentType.supersaw},
-			{name: "sampler" ,         customType: InstrumentType.sampler}
 		])},
 		{name: "Retro Presets", presets: <DictionaryArray<Preset>> toNameMap([
 			{name: "square wave",      midiProgram:  80, settings: {"type":"chip","eqFilter":[],"effects":[],"transition":"interrupt","fadeInSeconds":0,"fadeOutTicks":-1,"chord":"arpeggio","wave":"square","unison":"none","envelopes":[]}},
@@ -259,6 +258,7 @@ export class EditorConfig {
 	
 	public static valueToPreset(presetValue: number): Preset | null {
 		const categoryIndex: number = presetValue >> 6;
+		//1228
 		const presetIndex: number = presetValue & 0x3F;
 		return EditorConfig.presetCategories[categoryIndex].presets[presetIndex];
 	}
