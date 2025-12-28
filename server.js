@@ -5,7 +5,6 @@ import downloadToDisk from "./_freesound_test/freesoundDownload.js";
 import session from "express-session";
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
 
 const app = express();
 
@@ -17,6 +16,12 @@ app.use(
     saveUninitialized: false
   })
 );
+
+const ROOT_DIR = path.join("./");
+const INDEX_HTML = path.join(ROOT_DIR, "index.html");
+const PUBLIC_DIR = "./";
+const SOUNDS_DIR = path.join(ROOT_DIR, "sounds");
+
 
 /* Step 1: Redirect user to Freesound */
 app.get("/oauth/login", (req, res) => {
@@ -104,10 +109,20 @@ app.get("/download/", async (req, res) => {
   }
 });
 
+app.get("/api/sounds", (_req, res) => {
+  fs.readdir(SOUNDS_DIR, (err, files) => {
+    if (err) {
+      res.status(500).json({ error: "Failed to read sounds directory" });
+      return;
+    }
 
-const ROOT_DIR = path.join("./");
-const INDEX_HTML = path.join(ROOT_DIR, "index.html");
-const PUBLIC_DIR = "./"
+    const soundFiles = files.filter(f =>
+      /\.(wav|mp3|ogg|flac)$/i.test(f)
+    );
+
+    res.json(soundFiles);
+  });
+});
 
 app.get("/", (req, res) => {
     const dirs = fs.readdirSync(PUBLIC_DIR, { withFileTypes: true })

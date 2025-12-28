@@ -128,6 +128,25 @@
 			Sorry, BeepBox requires a JavaScript-enabled browser.
 		</noscript>
 	</div>
+
+
+	<style>
+		#waveform {
+			display: block;
+			margin-top: 20px;
+			background-color: white;
+    		border: 1px solid #333;
+		}
+	</style>
+	<select id="soundSelect">
+		<option value="">-- Select a sound --</option>
+	</select>
+
+	<canvas id="waveform" width="310" height="70"></canvas>
+	<script src="./modules/_audio_stream/waveform.js"></script>
+	<button id="exportStreamBtn">Export Audio sample to drumset inst(TODO)</button> 
+
+
 	<div id="text-content">
 		<section>
 			<h1>
