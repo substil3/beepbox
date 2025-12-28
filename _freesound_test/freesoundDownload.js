@@ -20,14 +20,15 @@ export default async function downloadToDisk(
     throw new Error(`Freesound API error: ${response.status}`);
   }
 
-
+  // get metadata
   const meta_url = `https://freesound.org/apiv2/sounds/${id}`;
   const meta_response = await fetch(meta_url, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${accessToken}`
     }
-  });
+  }); 
+
   const metadata = await meta_response.json();
   const fileName = metadata.name
 
